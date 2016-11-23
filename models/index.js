@@ -1,8 +1,8 @@
 var indexModels = {
     index: function(req, res, next) {
         res.render('index', {
-            pagename: 'awesome people',
-            authors: ['Paul', 'Jim', 'Jane']
+            pagename: 'Fruit',
+            authors: ['apple', 'palm', 'blackberry']
         });
     }
 }
