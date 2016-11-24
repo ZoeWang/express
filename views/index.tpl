@@ -1,17 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>hello world</title>
-</head>
-<body>
-	<h1>{{ pagename|title }}</h1>
-	<ul>
-	{% for author in authors %}
-  		<li{% if loop.first %} class="first"{% endif %}>
-    	{{ author }}
-  		</li>
-	{% endfor %}
-	</ul>
-</body>
-</html>
+{%extends 'layout.tpl'%}
+
+{%block content%}
+
+<h1>{{ pagename|title }}</h1>
+<ul>
+{% for author in authors %}
+  	<li{% if loop.first %} class="first"{% endif %}>
+   	{{ author }}
+  	</li>
+{% endfor %}
+</ul>
+
+{%endblock%}
