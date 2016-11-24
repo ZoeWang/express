@@ -8,5 +8,6 @@ var rssModels = require('../models/rssModels.js');
 
 router.get('/',indexModels.index);
 router.get('/rss',rssModels.index);
+router.get('/rssxml',rssModels.jqRss);
 
 module.exports = router;

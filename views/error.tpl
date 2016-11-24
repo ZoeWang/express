@@ -4,4 +4,6 @@
 
 <h1 style="position:relative;left:30%;font-size: 50px;margin-top:200px;">{{title}}</h1>
 
+<h1 style="position:relative;left:30%;font-size: 50px;margin-top:200px;">error</h1>
+
 {%endblock%}
