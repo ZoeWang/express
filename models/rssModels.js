@@ -2,7 +2,7 @@ var parseString = require('xml2js').parseString;
 var http = require('http');
 var fs = require('fs');
 
-function getXml(url) {
+function getXml(url,ress,tmplete) {
 
     http.get(url, function(html) {
 
@@ -17,7 +17,14 @@ function getXml(url) {
             saveXml(cont);
 
             // parse xml to object to string
-            parse(cont);
+            var html = parse(cont);
+            // return html
+            // console.log(html)
+            ress.render(tmplete, {
+                title: 'RSS',
+                xml: html
+            });
+            
         })
     })
 }
@@ -36,10 +43,13 @@ function parse(cont) {
     // console.log(xml_dom.rss.channel[0].item[0].link.toString());
     // console.log(xml_dom.rss.channel[0].item[0].guid.toString());
     var datas = xml_dom.rss.channel[0].item;
+
+    return datas;
+
     var html = '';
 
     datas.forEach(function(ele){
-    	console.log(ele.title.toString());
+    	// console.log(ele.title.toString());
 
     	var title = ele.title.toString();
     	var description = ele.description.toString();
@@ -48,8 +58,12 @@ function parse(cont) {
     	var link = ele.link.toString();
     	var guid = ele.link.toString();
 
-    	var xml_string;
+    	var xml_string = `<p>${title}</p>`
+
+        html += xml_string;
     })
+    // console.log(html)
+    return html
 }
 
 function saveXml(cont) {
@@ -68,12 +82,54 @@ var rssModels = {
     },
     jqRss: function(req, res, next) {
 
-        var rss = getXml('http://www.dgtle.com/rss/dgtle.xml');
+        // var rss = getXml('http://www.dgtle.com/rss/dgtle.xml',res,'rssxml');
+        // console.log(rss)
 
-        res.render('rssxml', {
-            title: 'RSS',
-            xml: "rss[0].title.toString();"
-        });
+        http.get('http://www.dgtle.com/rss/dgtle.xml', function(html) {
+
+            var cont = '';
+            html.on('data', function(content) {
+                cont += content.toString('utf-8');
+            })
+
+            html.on('end', function() {
+
+                // write to /datas/rss.xml
+                // saveXml(cont);
+
+                // parse xml to object to string
+                var html = parse(cont);
+
+                res.render('rssxml', {
+                    title: 'RSS',
+                    xml: html
+                });
+                
+            })
+        })  
+    },
+    getdata:function(req,res,next){
+        http.get('http://www.dgtle.com/rss/dgtle.xml', function(html) {
+
+            var cont = '';
+            html.on('data', function(content) {
+                cont += content.toString('utf-8');
+            })
+
+            html.on('end', function() {
+
+                // parse xml to object to string
+                var html = parse(cont);
+                
+                // console.log(html)
+
+                res.json( {
+                    code: '200',
+                    xml: html
+                });
+                
+            })
+        })
     }
 }
 
