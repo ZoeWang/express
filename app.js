@@ -5,7 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var swig = require('swig');
-
+swig.setDefaults({autoescape:false});
 
 
 var index = require('./routes/index');

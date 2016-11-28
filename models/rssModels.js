@@ -14,7 +14,7 @@ function getXml(url,ress,tmplete) {
         html.on('end', function() {
 
             // write to /datas/rss.xml
-            saveXml(cont);
+            // saveXml(cont);
 
             // parse xml to object to string
             var html = parse(cont);
