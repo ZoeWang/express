@@ -1,17 +1,19 @@
-{%extends 'layout.tpl'%}
+{%extends 'rss_layout.tpl'%}
 
 {%block content%}
 
-	<div id="content">
-		{% for val in xml %}
-			{{val.title[0]}}
-		{% endfor %}
-	</div>
+	<section>
 
-	<div id="content">
 		{% for val in xml %}
-			{{val.description[0]}}
+		<article>
+			<p class="title">{{val.title[0]}}</p>
+			<p class="author">{{val.author[0]}}</p>
+			<p class="description">{{val.description[0]}}</p>
+			<p class="pubdate">{{val.pubDate[0]}}</p>
+			<p class="link">{{val.link[0]}}</p>
+		</article>
 		{% endfor %}
-	</div>
+
+	</section>
 
 {%endblock%}

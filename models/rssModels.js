@@ -46,24 +46,20 @@ function parse(cont) {
 
     return datas;
 
-    var html = '';
+    // 以下部分交由模版编译
+    // var html = '';
+    // datas.forEach(function(ele){
+    // 	var title = ele.title.toString();
+    // 	var description = ele.description.toString();
+    // 	var author = ele.author.toString();
+    // 	var pubDate = ele.pubDate.toString();
+    // 	var link = ele.link.toString();
+    // 	var guid = ele.link.toString();
 
-    datas.forEach(function(ele){
-    	// console.log(ele.title.toString());
+    // 	var xml_string = `<p>${title}</p>`
 
-    	var title = ele.title.toString();
-    	var description = ele.description.toString();
-    	var author = ele.author.toString();
-    	var pubDate = ele.pubDate.toString();
-    	var link = ele.link.toString();
-    	var guid = ele.link.toString();
-
-    	var xml_string = `<p>${title}</p>`
-
-        html += xml_string;
-    })
-    // console.log(html)
-    return html
+    //     html += xml_string;
+    // })
 }
 
 function saveXml(cont) {
