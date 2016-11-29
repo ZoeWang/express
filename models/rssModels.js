@@ -69,15 +69,14 @@ var rssModels = {
         var cont,html;
         fs.readFile('datas/rss.xml', 'utf-8', function(err, data) {
             if (err) throw err;
-            cont = data;
 
+            var html = parse(data);
+
+            res.render('rssxml',{
+                title:'dgtle',
+                xml:html
+            });
         })
-        console.log(cont)
-        // var html = parse(cont);
-        res.render('rssxml', {
-            title: 'dgtle',
-            xml: "html"
-        });
 
     },
     getdata: function(req, res, next) {

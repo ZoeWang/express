@@ -1,7 +1,7 @@
 {%extends 'rss_layout.tpl'%}
 
 {%block content%}
-	<p>{{xml}}</p>
+
 	<section>
 
 		{% for val in xml %}
