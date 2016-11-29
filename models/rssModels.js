@@ -34,6 +34,7 @@ function parse(cont) {
     // })
 
 }
+
 // 获取 xml
 function getXml(url, ress, tmplete) {
 
@@ -58,6 +59,9 @@ function saveXml(cont) {
 }
 
 var rssModels = {
+    data:{
+        time:0
+    },
 
     index: function(req, res, next) {
         res.render('rss', {
@@ -66,10 +70,12 @@ var rssModels = {
     },
     jqRss: function(req, res, next) {
 
-        var cont,html;
+        var now = new Date().getTime();
+        var area = 
+
         fs.readFile('datas/rss.xml', 'utf-8', function(err, data) {
             if (err) throw err;
-
+            console.log('hhh2ll222')
             var html = parse(data);
 
             res.render('rssxml',{
