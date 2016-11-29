@@ -36,7 +36,7 @@ function parse(cont) {
 }
 
 // 获取 xml
-function getXml(url, ress, tmplete) {
+function getXml(url) {
 
     http.get(url, function(html) {
 
@@ -71,11 +71,15 @@ var rssModels = {
     jqRss: function(req, res, next) {
 
         var now = new Date().getTime();
-        var area = 
-
+        var area = now - rssModels.data.time;
+        if (area > 86400000) {
+            getXml('http://www.dgtle.com/rss/dgtle.xml')
+            rssModels.data.time = now;
+        }
+        console.log(rssModels.data.time);
         fs.readFile('datas/rss.xml', 'utf-8', function(err, data) {
             if (err) throw err;
-            console.log('hhh2ll222')
+
             var html = parse(data);
 
             res.render('rssxml',{
