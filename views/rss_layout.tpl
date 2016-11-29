@@ -6,17 +6,28 @@
 	<link rel="stylesheet" type="text/css" href="stylesheets/bootstrap.min.css">
 	<title>{{title}}</title>
 	<style type="text/css">
+		body{
+			background: #eee;
+		}
 		section{
-			padding:0 20px;
+			padding:10px 10px;
 		}
 		article{
+			padding:5px 8px;
 			margin-bottom: 30px;
 			border-top:1px solid #ccc;
+			box-shadow: 0px 2px 5px #c1c1c1;
+			border-radius: 2px;
+			background: #fff;
+		}
+		img{
+			width: 103%;
+			margin-left:-1.5%;
 		}
 		.title{
 			font-size: 20px;
 			font-weight: 500;
-			margin-top:20px;
+			margin-top:15px;
 			text-align: center;
 		}
 		.author{
@@ -31,9 +42,6 @@
 		}
 		.pubdate,.link{
 			text-align: center;
-		}
-		img{
-			width: 100%;
 		}
 	</style>
 </head>
