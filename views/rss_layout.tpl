@@ -6,6 +6,9 @@
 	<link rel="stylesheet" type="text/css" href="stylesheets/bootstrap.min.css">
 	<title>{{title}}</title>
 	<style type="text/css">
+		*{
+			font-family:"PingFang SC", "Microsoft JhengHei";
+		}
 		body{
 			background: #eee;
 		}
@@ -29,6 +32,9 @@
 			font-weight: 500;
 			margin-top:15px;
 			text-align: center;
+		}
+		.description{
+			line-height:1.5;
 		}
 		.author{
 			margin:15px 0;
