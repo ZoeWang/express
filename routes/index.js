@@ -9,9 +9,8 @@ var loginModels = require('../models/loginModels.js');
 
 router.get('/',indexModels.index);
 router.get('/rss',rssModels.index);
-router.get('/rssxml',rssModels.jqRss);
+router.get('/dgtle',rssModels.jqRss);
 router.get('/getdata',rssModels.getdata);
 router.get('/login',loginModels.index);
-
 
 module.exports = router;

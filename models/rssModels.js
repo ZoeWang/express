@@ -97,7 +97,7 @@ var rssModels = {
                 var html = parse(cont);
 
                 res.render('rssxml', {
-                    title: 'RSS',
+                    title: 'dgtle',
                     xml: html
                 });
                 
