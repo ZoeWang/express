@@ -19,7 +19,14 @@ function parse(cont) {
 
     var datas = xml_dom.rss.channel[0].item;
 
-    return datas;
+    var total = [];
+
+    for (var i = 0; i < 10; i++) {
+        total.push(datas[i])
+    }
+    console.log(total[1])
+
+    return total;
 
     // 以下部分现交由模版编写
     // var rss_title = '';

@@ -42,7 +42,7 @@
 			text-align: center;
 		}
 		.pubdate{
-			margin-top:10px;
+			margin-top:20px;
 		}
 		.link{
 			margin-top:5px;
