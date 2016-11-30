@@ -2,6 +2,7 @@ var parseString = require('xml2js').parseString;
 var http = require('http');
 var fs = require('fs');
 
+// 编译 xml
 function parse(cont) {
 
     parseString(cont, { trim: true }, function(err, result) {
@@ -20,7 +21,7 @@ function parse(cont) {
 
     return datas;
 
-    // 以下部分现交由模版编译
+    // 以下部分现交由模版编写
     // var rss_title = '';
     // datas.forEach(function(ele) {
     //     var title = ele.title.toString();
@@ -58,9 +59,33 @@ function saveXml(cont) {
     })
 }
 
+function saveConfig(cont) {
+    fs.writeFile('config/config.txt', JSON.stringify(cont), function(err) {
+        if (err) throw err;
+        console.log('config.txt saved!');
+    })
+}
+
+function readConfig(url) {
+    var now = new Date().getTime();
+    var time = { 'time': now };
+
+    fs.readFile(url, 'utf-8', function(err, data) {
+        if (err) throw err;
+        // console.log(data)
+        var datas = JSON.parse(data);
+        rssModels.data.time = datas.time;
+        var area = now - rssModels.data.time;
+        if (area > 86400000) {
+            saveConfig(time);
+            getXml('http://www.dgtle.com/rss/dgtle.xml');
+        }
+    })
+}
+
 var rssModels = {
-    data:{
-        time:0
+    data: {
+        time: 0
     },
 
     index: function(req, res, next) {
@@ -71,20 +96,18 @@ var rssModels = {
     jqRss: function(req, res, next) {
 
         var now = new Date().getTime();
-        var area = now - rssModels.data.time;
-        if (area > 86400000) {
-            getXml('http://www.dgtle.com/rss/dgtle.xml')
-            rssModels.data.time = now;
-        }
-        console.log(rssModels.data.time);
+        var time = { 'time': now };
+
+        readConfig('config/config.txt');
+
         fs.readFile('datas/rss.xml', 'utf-8', function(err, data) {
             if (err) throw err;
 
             var html = parse(data);
 
-            res.render('rssxml',{
-                title:'dgtle',
-                xml:html
+            res.render('rssxml', {
+                title: 'dgtle',
+                xml: html
             });
         })
 
