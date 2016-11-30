@@ -83,7 +83,7 @@ function readConfig(url) {
         var datas = JSON.parse(data);
         rssModels.data.time = datas.time;
         var area = now - rssModels.data.time;
-        if (area > 86400000) {
+        if (area > 7200000) {
             saveConfig(time);
             getXml('http://www.dgtle.com/rss/dgtle.xml');
         }
