@@ -11,6 +11,7 @@
 		}
 		body{
 			background: #eee;
+			font-size:16px;
 		}
 		section{
 			padding:10px 10px;
