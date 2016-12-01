@@ -9,22 +9,22 @@ function parse(cont) {
             if (err) throw err;
             xml_dom = result;
         })
-        // xml数据结构
-        // console.log(xml_dom.rss.channel[0].item[0].title.toString());
-        // console.log(xml_dom.rss.channel[0].item[0].description.toString());
-        // console.log(xml_dom.rss.channel[0].item[0].author.toString());
-        // console.log(xml_dom.rss.channel[0].item[0].pubDate.toString());
-        // console.log(xml_dom.rss.channel[0].item[0].link.toString());
-        // console.log(xml_dom.rss.channel[0].item[0].guid.toString());
+
+    // rss.dgtle.com 的 xml 结构
+    // console.log(xml_dom.rss.channel[0].item[0].title.toString());
+    // console.log(xml_dom.rss.channel[0].item[0].description.toString());
+    // console.log(xml_dom.rss.channel[0].item[0].author.toString());
+    // console.log(xml_dom.rss.channel[0].item[0].pubDate.toString());
+    // console.log(xml_dom.rss.channel[0].item[0].link.toString());
+    // console.log(xml_dom.rss.channel[0].item[0].guid.toString());
 
     var datas = xml_dom.rss.channel[0].item;
 
     var total = [];
 
-    for (var i = 0; i < 10; i++) {
+    for (var i = 0; i < 12; i++) {
         total.push(datas[i])
     }
-    console.log(total[1])
 
     return total;
 
@@ -79,7 +79,6 @@ function readConfig(url) {
 
     fs.readFile(url, 'utf-8', function(err, data) {
         if (err) throw err;
-        // console.log(data)
         var datas = JSON.parse(data);
         rssModels.data.time = datas.time;
         var area = now - rssModels.data.time;
