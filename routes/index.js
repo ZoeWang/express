@@ -4,6 +4,7 @@ var router = express.Router();
 var indexModels = require('../models/index.js');
 var rssModels = require('../models/rssModels.js');
 var loginModels = require('../models/loginModels.js');
+var femaleModels = require('../models/femaleModels.js');
 
 /* GET home page. */
 
@@ -12,5 +13,6 @@ router.get('/rss',rssModels.index);
 router.get('/dgtle',rssModels.jqRss);
 router.get('/getdata',rssModels.getdata);
 router.get('/login',loginModels.index);
+router.get('/female',femaleModels.index);
 
 module.exports = router;
