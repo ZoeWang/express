@@ -11,17 +11,27 @@
 		}
 		body{
 			padding:0 10px;
+			padding-bottom: 40px;
 		}
 		hr{
 			display: none;
 		}
-		.order{
+		.order,.order2{
 			margin-left:5px;
 			font-size: 20px;
 		}
 		h1,h2{
 			margin-top:20px;
 			margin-bottom: 20px;
+		}
+		h2{
+			text-align: center;
+			padding-bottom: 10px;
+			border-bottom:1px solid #ccc;
+		}
+		h2 a{
+			color:#333;
+			text-decoration: none;
 		}
 		.container img{
 			width:106%;
@@ -46,34 +56,37 @@
 			width: 100%;
 			margin-top:-50%;
 		}
+		.active{
+			color:#35b558;
+		}
 	</style>
 </head>
 <body>
 	<div class="mask"><img src="images/loading.gif"></div>
 	<h1>Dgtle Reader</h1>
-	<a href="javascript:;" class="order">1</a>
-	<a href="javascript:;" class="order">2</a>
-	<a href="javascript:;" class="order">3</a>
-	<a href="javascript:;" class="order">4</a>
-	<a href="javascript:;" class="order">5</a>
-	<a href="javascript:;" class="order">6</a>
-	<a href="javascript:;" class="order">7</a>
-	<a href="javascript:;" class="order">8</a>
-	<a href="javascript:;" class="order">9</a>
-	<a href="javascript:;" class="order">10</a>
+	<a href="javascript:;" class="order order1 active">1</a>
+	<a href="javascript:;" class="order order1">2</a>
+	<a href="javascript:;" class="order order1">3</a>
+	<a href="javascript:;" class="order order1">4</a>
+	<a href="javascript:;" class="order order1">5</a>
+	<a href="javascript:;" class="order order1">6</a>
+	<a href="javascript:;" class="order order1">7</a>
+	<a href="javascript:;" class="order order1">8</a>
+	<a href="javascript:;" class="order order1">9</a>
+	<a href="javascript:;" class="order order1">10</a>
 	<div class="container">
 		{{html}}
 	</div>
-	<a href="javascript:;" class="order">1</a>
-	<a href="javascript:;" class="order">2</a>
-	<a href="javascript:;" class="order">3</a>
-	<a href="javascript:;" class="order">4</a>
-	<a href="javascript:;" class="order">5</a>
-	<a href="javascript:;" class="order">6</a>
-	<a href="javascript:;" class="order">7</a>
-	<a href="javascript:;" class="order">8</a>
-	<a href="javascript:;" class="order">9</a>
-	<a href="javascript:;" class="order">10</a>
+	<a href="javascript:;" class="order order2 active">1</a>
+	<a href="javascript:;" class="order order2">2</a>
+	<a href="javascript:;" class="order order2">3</a>
+	<a href="javascript:;" class="order order2">4</a>
+	<a href="javascript:;" class="order order2">5</a>
+	<a href="javascript:;" class="order order2">6</a>
+	<a href="javascript:;" class="order order2">7</a>
+	<a href="javascript:;" class="order order2">8</a>
+	<a href="javascript:;" class="order order2">9</a>
+	<a href="javascript:;" class="order order2">10</a>
 	
 	<script type="text/javascript" src="javascripts/jquery.js"></script>
 	<script type="text/javascript">
@@ -96,6 +109,7 @@
 		}
 		function getArticle(){
 			$('.order').on('click',function(){
+				$('.order').removeClass('active');
 				$('.mask').show();
 				var i = Number($(this).text());
 				$.ajax({
@@ -106,15 +120,17 @@
 					},
 					dataType:'json',
 					success:function(res){
-						$("html,body").animate({ scrollTop: 0},500);
+						$("html,body").animate({ scrollTop: 0},200);
 						$('.container').html(res.content);
 						if ($('.container h2').text() == 'null') {
-							$('.container h2').text('爬不动了~ヽ(ˋДˊ)ノ')
+							$('.container h2').text('爬不到了~ヽ(ˋДˊ)ノ')
 						}
 						if ($('.main').text() == 'null') {
-							$('.main').text('这个也爬不动ヽ(ˋДˊ)ノ');
+							$('.main').text('这个也爬不到ヽ(ˋДˊ)ノ');
 						}
-						$('.mask').fadeOut();
+						$('.order1').eq(res.number).addClass('active');
+						$('.order2').eq(res.number).addClass('active');
+						$('.mask').fadeOut(300);
 					},
 					error:function(res){
 						alert('通讯失败');

@@ -127,7 +127,7 @@ var reptile = {
         fs.readFile(url, 'utf-8', function(err, data) {
             if (err) throw err;
             var html = parseArticle(data);
-            res.json({ content: html });
+            res.json({ content: html,number:req.body.order });
         })
     }
 }
