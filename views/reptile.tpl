@@ -65,7 +65,6 @@
 	<div class="container">
 		{{html}}
 	</div>
-	<a href="javascript:;" id="renew">刷新文章</a>
 	<a href="javascript:;" class="order">1</a>
 	<a href="javascript:;" class="order">2</a>
 	<a href="javascript:;" class="order">3</a>
