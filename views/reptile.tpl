@@ -38,6 +38,8 @@
 		.container img{
 			width:106%;
 			margin-left:-3%;
+			margin-top:10px;
+			margin-bottom:10px;
 		}
 		.container{
 			margin-bottom: 20px;
