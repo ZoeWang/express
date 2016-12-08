@@ -31,7 +31,7 @@
 			margin-bottom: 20px;
 		}
 		.mask{
-			display: none;
+			display: block;
 			z-index: 2;
 			position: fixed;
 			top:0;
@@ -99,7 +99,6 @@
 		}
 
 		function initArticle(){
-			$('.mask').fadeIn();
 			$.ajax({
 				type:"POST",
 				url:'/init',
