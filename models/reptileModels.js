@@ -23,6 +23,10 @@ function getHtml(url, site) {
 
         html.on('end', function() {
             saveHtml(url, cont); // save to datas/site.html
+            fs.readFile('datas/site.html', 'utf-8', function(err, data) {
+                if (err) throw err;
+                parse(data);
+            })
         })
     })
 }
@@ -35,7 +39,7 @@ function saveHtml(url, cont) {
     })
 }
 
-function parse(data, res) {
+function parse(data) {
     var $ = cheerio.load(data);
     var html = [];
 
@@ -48,11 +52,11 @@ function parse(data, res) {
     reptile.datas.articles = html;
 
     console.log('开始抓取目标链接内容');
-    fetchPage(reptile.datas.i, reptile.datas.k, res);
+    fetchPage(reptile.datas.i, reptile.datas.k);
 
 }
 
-function fetchPage(i, k, res) {
+function fetchPage(i, k) {
 
     http.get(reptile.datas.articles[reptile.datas.k], function(html) {
         var url = `datas/articles/articles${reptile.datas.k + 1}.html`
@@ -68,12 +72,11 @@ function fetchPage(i, k, res) {
         reptile.datas.k++;
 
         if (k < i - 1) {
-            fetchPage(reptile.datas.i, reptile.datas.k, res)
+            fetchPage(reptile.datas.i, reptile.datas.k)
             console.log(k);
             console.log(i);
         } else {
             reptile.datas.k = 0;
-            res.json({ message: '刷新成功' })
         }
     })
 }
@@ -92,27 +95,26 @@ var reptile = {
         i: 10, //保存文章数量
         k: 0,
         articles: [],
-        order: 1
+        order: 1,
+        time: 0
     },
     index: function(req, res, next) {
         res.render('reptile', {
             title: 'reptile'
         });
     },
-    fetchPage: function(req, res, next) {
-
-        fs.readFile('datas/site.html', 'utf-8', function(err, data) {
-            if (err) throw err;
-            parse(data, res);
-        })
-    },
-    renew: function(req, res, next) {
-        getHtml('datas/site.html', "http://www.dgtle.com/");
-        console.log('正在获取站点链接')
-        next();
-    },
     articlesInit: function(req, res, next) {
+        var now = new Date().getTime();
         var url = `datas/articles/articles${reptile.datas.order}.html`;
+
+        var area = now - reptile.datas.time;
+
+        if (area > 7200000) {
+            getHtml('datas/site.html', "http://www.dgtle.com/");
+            reptile.datas.time = now;
+            console.log('正在获取站点链接');
+        }
+
         fs.readFile(url, 'utf-8', function(err, data) {
             if (err) throw err;
             var html = parseArticle(data);

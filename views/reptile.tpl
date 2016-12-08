@@ -51,7 +51,6 @@
 <body>
 	<div class="mask"><img src="images/loading.gif"></div>
 	<h1>Dgtle Reader</h1>
-	<a href="javascript:;" id="renew">刷新文章</a>
 	<a href="javascript:;" class="order">1</a>
 	<a href="javascript:;" class="order">2</a>
 	<a href="javascript:;" class="order">3</a>
@@ -78,24 +77,6 @@
 	
 	<script type="text/javascript" src="javascripts/jquery.js"></script>
 	<script type="text/javascript">
-		
-		function renew(){
-			$('#renew').on('click',function(){
-				$('.mask').fadeIn();
-				$.ajax({
-					type:"POST",
-					url:'/renew',
-					data:'',
-					dataType:'json',
-					success:function(res){
-						setTimeout(function(){alert(res.message);location.reload()},1000)
-					},
-					error:function(res){
-						alert('通讯失败');
-					}
-				})
-			})
-		}
 
 		function initArticle(){
 			$.ajax({
@@ -104,6 +85,7 @@
 				data:'',
 				dataType:'json',
 				success:function(res){
+					console.log(res.message);
 					$('.container').html(res.content);
 					$('.mask').fadeOut();
 				},
@@ -114,6 +96,7 @@
 		}
 		function getArticle(){
 			$('.order').on('click',function(){
+				$('.mask').show();
 				var i = Number($(this).text());
 				$.ajax({
 					type:"POST",
@@ -125,6 +108,13 @@
 					success:function(res){
 						$("html,body").animate({ scrollTop: 0},500);
 						$('.container').html(res.content);
+						if ($('.container h2').text() == 'null') {
+							$('.container h2').text('爬不动了~ヽ(ˋДˊ)ノ')
+						}
+						if ($('.main').text() == 'null') {
+							$('.main').text('这个也爬不动ヽ(ˋДˊ)ノ');
+						}
+						$('.mask').fadeOut();
 					},
 					error:function(res){
 						alert('通讯失败');
@@ -132,7 +122,6 @@
 				})
 			})
 		}
-		renew();
 		initArticle();
 		getArticle();
 	</script>

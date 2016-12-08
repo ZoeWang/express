@@ -15,7 +15,6 @@ router.get('/getdata',rssModels.getdata);
 router.get('/login',loginModels.index);
 
 router.get('/reptile',reptileModels.index);
-router.post('/renew',reptileModels.renew,reptileModels.fetchPage);
 router.post('/init',reptileModels.articlesInit);
 router.post('/get',reptileModels.getArticle);
 
