@@ -128,8 +128,9 @@
 						if ($('.main').text() == 'null') {
 							$('.main').text('这个也爬不到ヽ(ˋДˊ)ノ');
 						}
-						$('.order1').eq(res.number).addClass('active');
-						$('.order2').eq(res.number).addClass('active');
+						var index = Number(res.number - 1);
+						$('.order1').eq(index).addClass('active');
+						$('.order2').eq(index).addClass('active');
 						$('.mask').fadeOut(300);
 					},
 					error:function(res){
