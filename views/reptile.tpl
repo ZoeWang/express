@@ -3,9 +3,11 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,user-scalable=no">
+	<link rel="stylesheet" type="text/css" href="stylesheets/bootstrap.min.css">
 	<title>{{title}}</title>
 	<style type="text/css">
 		*{
+			font-family:"PingFang SC", "Microsoft JhengHei";
 			margin:0;
 			padding:0;
 		}
