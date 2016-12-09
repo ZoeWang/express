@@ -25,9 +25,9 @@
 		h1,h2{
 			margin-top:20px;
 			margin-bottom: 20px;
+			text-align:center;
 		}
 		h2{
-			text-align: center;
 			padding-bottom: 10px;
 			border-bottom:1px solid #ccc;
 		}
@@ -43,6 +43,9 @@
 		}
 		.container{
 			margin-bottom: 20px;
+		}
+		.main{
+			font-size:16px;
 		}
 		.mask{
 			display: block;
@@ -68,6 +71,7 @@
 <body>
 	<div class="mask"><img src="images/loading.gif"></div>
 	<h1>Dgtle Reader</h1>
+	<div style="text-align:center;">
 	<a href="javascript:;" class="order order1 active">1</a>
 	<a href="javascript:;" class="order order1">2</a>
 	<a href="javascript:;" class="order order1">3</a>
@@ -78,9 +82,11 @@
 	<a href="javascript:;" class="order order1">8</a>
 	<a href="javascript:;" class="order order1">9</a>
 	<a href="javascript:;" class="order order1">10</a>
+	</div>
 	<div class="container">
 		{{html}}
 	</div>
+	<div style="text-align:center">
 	<a href="javascript:;" class="order order2 active">1</a>
 	<a href="javascript:;" class="order order2">2</a>
 	<a href="javascript:;" class="order order2">3</a>
@@ -91,7 +97,7 @@
 	<a href="javascript:;" class="order order2">8</a>
 	<a href="javascript:;" class="order order2">9</a>
 	<a href="javascript:;" class="order order2">10</a>
-	
+	</div>
 	<script type="text/javascript" src="javascripts/jquery.js"></script>
 	<script type="text/javascript">
 
